@@ -25,6 +25,7 @@ router.get('/gigs', db.getallgigs);
 router.post('/giggers', db.creategigger);
 router.put('/giggers/:id', db.updategigger);
 router.delete('/giggers/:id', db.removegigger);
+router.delete('/gigs/:id', db.removegigger);
 
 module.exports = router;
 

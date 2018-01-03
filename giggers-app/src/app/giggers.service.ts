@@ -45,11 +45,18 @@ export class GiggersService {
 
     deletegigger(id: number): Observable<Gigger>{
         return this.http
-        .delete(this.baseUrl + ("/giggers" || "/gigs") + "/" + id, this.options)
+        .delete(this.baseUrl + ("/giggers") + "/" + id, this.options)
         .map((res: Response) => res.json())
         //.catch(this.handleError);
         }
-
+    
+    deletegigs(id: number): Observable<Gigger>{
+        return this.http
+        .delete(this.baseUrl + ("/gigs") + "/" + id, this.options)
+        .map((res: Response) => res.json())
+        //.catch(this.handleError);
+        }
+    
     getgiggerbyid(id: number): Observable<Gigger>{ 
         return this.getgiggers()
         .map(giggers => giggers.find(gigger => gigger.id == id));

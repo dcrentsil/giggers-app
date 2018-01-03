@@ -41,10 +41,16 @@ export class GiggersComponent implements OnInit {
     )
   } 
 
-  deletegigger(id: number) {
+  deletegigger(id: number, index:number) {
     this.giggersService.deletegigger(id).subscribe(
       data=>console.log(data));
-      this.giggers.splice(id, 1);
+      this.giggers.splice(index,1);
+  }
+
+  deletegigs(id:number, index:number) {
+    this.giggersService.deletegigs(id).subscribe(
+      data=>console.log(data));
+      this.gigs.splice(index, 1);
   }
 
 }

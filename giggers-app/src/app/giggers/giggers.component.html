@@ -15,7 +15,7 @@
         <td> {{g.username}} </td>
         <td> {{g.speciality}}</td>
         <td style="width: 70px;"> 
-            <button class="button_transparent" (click)="deletegigger(i)"> delete </button>
+            <button class="button_transparent" (click)="deletegigger(g.id, i)"> delete </button>
     </tr>
     </tbody>
 </table>
@@ -35,7 +35,7 @@
           <td> {{x.name}} </td>
           <td> {{x.username}} </td>
           <td style="width: 70px;"> 
-              <button class="button_transparent" (click)="deletegigger(i)"> delete </button>
+              <button class="button_transparent" (click)="deletegigs(x.id, i)"> delete </button>
 
             </tr>
     </tbody>

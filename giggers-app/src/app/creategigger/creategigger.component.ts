@@ -1,50 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { Gigger } from '../giggers';
-import { GiggersService } from '../giggers.service';
-import { Location } from '@angular/common';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+import { Store } from '@ngrx/store';
+
+import { IGiggers } from '../redux/interfaces/giggers.interface';
+import { addgigger } from '../redux/actions/actions.gigger';
+import { Gigger } from '../models/giggers';
+import { GiggerEffects } from '../redux/effects/giggers.effect';
+
+
 
 @Component({
   selector: 'app-creategigger',
   templateUrl: './creategigger.component.html',
   styleUrls: ['./creategigger.component.css']
 })
-export class CreategiggerComponent implements OnInit {
-  // public gigger: Gigger;
-  gigger: Gigger;
+
+export class CreategiggerComponent{
+  gigger: Gigger = new Gigger();
   submitted = false;
 
-  constructor( private giggersService: GiggersService,
-       private location: Location) {
-        }
+  constructor( private store: Store<IGiggers>) {}
 
-   ngOnInit() {
-    this.gigger = {
-      type: '',
-      name: '',
-      username:'',
-      speciality: '',
-      description:''
-    };
-  }
+        add(form: NgForm) {
+          this.store.dispatch(addgigger(this.gigger));
+          console.log(this.gigger);
+          this.submitted = true;
+      }
+    }
 
-  onsubmit() {
-    this.submitted = true;
-    this.save;
-    console.log(this.gigger);    
-  }
-
-  private save(model: Gigger, isValid: boolean): void {
-    this.giggersService.creategigger(this.gigger).subscribe(
-      data=> console.log(this.gigger = data),
-      err => console.log(err),
-      () => console.log('Request Completed')
-    );
-    this.submitted = true;
-  }
-
-
-  goBack(): void {
-    this.location.back();
-  }
-
-}

@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-redux/store": "^7.0.2",
     "@angular/animations": "^5.1.1",
     "@angular/cdk": "^5.0.2",
     "@angular/common": "^5.0.0",
@@ -23,7 +24,14 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
+    "@ngrx/core": "^1.2.0",
+    "@ngrx/effects": "^4.1.1",
+    "@ngrx/store": "^4.1.1",
+    "@ngrx/store-devtools": "^4.1.1",
     "core-js": "^2.4.1",
+    "ng2-redux": "^5.1.2",
+    "redux": "^3.7.2",
+    "redux-effects": "^0.4.3",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },

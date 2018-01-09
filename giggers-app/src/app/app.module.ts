@@ -10,6 +10,11 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { GiggersService } from './giggers.service';
 import { CreategiggerComponent } from './creategigger/creategigger.component';
 import { RoutingModule } from '../app/app.routing';
+import { NgReduxModule, NgRedux } from 'ng2-redux';
+import { StoreModule } from '@ngrx/store';
+import { giggerReducer } from './redux/reducers/giggers.reducer';
+// import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -22,6 +27,9 @@ import {
   MatCheckboxModule 
 } from '@angular/material';
 import { NavbarComponent } from './navbar/navbar.component';
+import { GiggerEffects } from './redux/effects/giggers.effect';
+import { AboutComponent } from './about/about.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -30,9 +38,17 @@ import { NavbarComponent } from './navbar/navbar.component';
     GiggersComponent,
     HomepageComponent,
     CreategiggerComponent,
-    NavbarComponent
+    NavbarComponent,
+    AboutComponent,
+    LoginComponent
   ],
   imports: [
+    NgReduxModule,
+    EffectsModule.forRoot([GiggerEffects]),
+    // StoreDevtoolsModule.instrument({
+    //   maxAge: 25 //  Retains last 25 states
+    // }),
+    StoreModule.forRoot({ gigger: giggerReducer}),
     BrowserModule, BrowserAnimationsModule,   
     MatButtonModule, MatCardModule,
     MatInputModule,MatSnackBarModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Gigger } from '../giggers';
+import { Gigger } from '../models/giggers';
 import { GiggersService } from '../giggers.service';
 import { NgForm } from '@angular/forms';
 

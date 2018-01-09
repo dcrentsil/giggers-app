@@ -4,12 +4,17 @@ import { GiggersService } from './giggers.service';
 import { CreategiggerComponent } from './creategigger/creategigger.component';
 import {RouterModule, Routes } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
+import { LoginComponent } from './login/login.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
     { path: '',redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomepageComponent },
     { path: 'giggers',component: GiggersComponent },
-    { path: 'signup', component: CreategiggerComponent}
+    { path: 'signup', component: CreategiggerComponent},
+    { path: 'login', component: LoginComponent},
+    { path: 'about', component: AboutComponent},
+     
   ];
 
   

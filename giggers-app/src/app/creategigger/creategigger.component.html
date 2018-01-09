@@ -1,6 +1,6 @@
 <div>
 <h1> New Gigger Form </h1>
- <form #f="ngForm" (ngSubmit)="save(f.value, f.valid)" novalidate>
+ <form #inputForm="ngForm" (ngSubmit)="add(inputForm)">
 
     <div>
     <label>Type</label>
@@ -30,15 +30,14 @@
     <input type="text" name="description" [(ngModel)]="gigger.description" #name="ngModel">
 </div>
 
-<button class="btn btn-primary" (click)="goBack()">Back</button>
-<!-- <button type="onsubmit">Submit</button> -->
-<button class="btn btn-primary" (click)="onsubmit()"> Signup </button>
+<!-- <button class="btn btn-primary"> Signup </button> -->
+<button class="btn btn-primary"> Signup </button>
 
- 
+
 <div [hidden]="!submitted">
     <div class="btn-group ">
       <h4>Gigger Created Successfully!</h4>
     </div>
     </div>
- </form>
+    </form>
 </div>

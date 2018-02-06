@@ -9,17 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.1",
-    "body-parser": "^1.13.3",
-    "cookie-parser": "^1.4.3",
+    "body-parser": "^1.18.2",
     "cors": "^2.8.4",
-    "express": "^4.13.4",
-    "express-promise-router": "^3.0.1",
-    "jsonwebtoken": "^8.1.0",
-    "nodemon": "^1.14.12",
-    "pg": "^7.4.1",
-    "pg-pool": "^2.0.3",
-    "pug": "^2.0.0-rc.4"
+    "express": "^4.16.2",
+    "nodemon": "^1.12.6",
+    "pg-promise": "^7.3.2"
   }
 }

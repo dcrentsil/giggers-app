@@ -11,8 +11,8 @@ import { NgForm } from '@angular/forms';
 })
 export class GiggersComponent implements OnInit {
   errorMsg: string;
-  giggers: Gigger[];
-  gigs: Gigger[];
+  giggers: Gigger[] = [];
+  gigs: Gigger[] = [];
 
   constructor(private giggersService: GiggersService){}
 

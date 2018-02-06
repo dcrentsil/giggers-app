@@ -1,14 +1,19 @@
 <mat-toolbar color = "light" >
     <!-- <span > GIGGERS APP </span> -->
-    <h1 id="logo">
+    <!-- <h1 id="logo">
         <a [routerLink]="['/home']"> GIGGERS APP </a> 
-    </h1>
+    </h1> -->
 
-        <nav>
+<nav>
     <button mat-button routerLink="/about"> About </button>    
-    <button mat-button routerLink="/giggers"> Giggers </button>
+    <button mat-button routerLink="/giggers"> Browse Giggers </button>
+
+
+    <div id="corner">
     <button mat-raised-button color="warn" routerLink="/signup">Signup</button>
-        </nav>
+    <button mat-raised-button color="warn" routerLink="/login">Login</button>
+    </div>
+</nav>
 
 
 

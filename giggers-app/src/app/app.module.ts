@@ -13,24 +13,20 @@ import { RoutingModule } from '../app/app.routing';
 import { NgReduxModule, NgRedux } from 'ng2-redux';
 import { StoreModule } from '@ngrx/store';
 import { giggerReducer } from './redux/reducers/giggers.reducer';
-// import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {
-  MatButtonModule, 
-  MatCardModule,
-  MatInputModule,
-  MatSnackBarModule,
-  MatToolbarModule,
-  MatCheckboxModule 
-} from '@angular/material';
+import { MaterialModule } from '../material/material.module';
+
 import { NavbarComponent } from './navbar/navbar.component';
 import { GiggerEffects } from './redux/effects/giggers.effect';
 import { AboutComponent } from './about/about.component';
-import { LoginComponent } from './login/login.component';
-
+import { LoginComponent } from './components/login/login.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { AlertService } from './services/alert/alert.service';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -40,23 +36,22 @@ import { LoginComponent } from './login/login.component';
     CreategiggerComponent,
     NavbarComponent,
     AboutComponent,
-    LoginComponent
+    LoginComponent,
+    AlertComponent
   ],
   imports: [
     NgReduxModule,
+    HttpModule,
     EffectsModule.forRoot([GiggerEffects]),
-    // StoreDevtoolsModule.instrument({
-    //   maxAge: 25 //  Retains last 25 states
-    // }),
     StoreModule.forRoot({ gigger: giggerReducer}),
-    BrowserModule, BrowserAnimationsModule,   
-    MatButtonModule, MatCardModule,
-    MatInputModule,MatSnackBarModule,
-    MatToolbarModule,HttpModule, 
-    FormsModule, ReactiveFormsModule,RoutingModule, MatCheckboxModule,
-
+    StoreDevtoolsModule.instrument({
+      maxAge: 25 //  Retains last 25 states
+    }),
+    BrowserModule, BrowserAnimationsModule, 
+    MaterialModule, 
+    FormsModule, ReactiveFormsModule,RoutingModule,
   ],
-  providers: [GiggersService],
+  providers: [GiggersService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

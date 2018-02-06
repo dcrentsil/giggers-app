@@ -1,5 +1,25 @@
 
- <!-- <h1>{{title}}</h1>  -->
+ <!DOCTYPE HTML>    
+ <html>
+     <!-- <head>
+         <link rel="stylesheet" href="app.component.css">
+     </head> -->
 
-<app-navbar id="header"></app-navbar>
-<router-outlet id="body"></router-outlet>
+
+<header>
+<h1> <a [routerLink]="['/home']">{{title}} </a></h1>
+</header>
+
+<nav>
+        <app-navbar></app-navbar>
+</nav>
+
+<body>
+        <router-outlet></router-outlet> 
+</body>
+
+<footer>
+    Copyright 2018 Donnie Productions.
+    <a href="https://github.com/dcrentsil"> Visit Profile </a>
+</footer>
+</html>

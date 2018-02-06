@@ -7,6 +7,11 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import { IAppState } from './redux/store/store';
 
+const loginOptions = new RequestOptions({
+    withCredentials: true,
+  });
+
+  
 @Injectable()
 export class GiggersService {
     private baseUrl = 'http://localhost:3000/api';
@@ -19,11 +24,18 @@ export class GiggersService {
 
     getgiggers() {
         return this.http.get(this.baseUrl + "/giggers")
-        .map((res: Response) => res.json().data);    } 
+        .map((res: Response) => {
+            console.log(res.json().data.rows);
+            return res.json().data.rows
+        });
+    }
     
     getgigs() {
         return this.http.get(this.baseUrl + "/gigs")
-        .map((res: Response) => res.json().data);
+        .map((res: Response) => {
+            console.log(res.json().data.rows);
+            return res.json().data.rows
+        });
      }
 
     creategigger(gigger: Gigger) {
@@ -43,8 +55,24 @@ export class GiggersService {
         .map((res: Response) => res.json())
         }
     
-    getgiggerbyid(id: number): Observable<Gigger>{ 
-        return this.getgiggers()
-        .map(giggers => giggers.find(gigger => gigger.id == id));
+    getgiggerbyid(_id: number): Observable<Gigger>{ 
+        return this.http
+        .get(this.baseUrl + ("/giggers") + _id)
+        .map(response => response.json());
     }
+
+    login(username: string, password: string) {
+        const body = `{"username":"${username}","password":"${password}"}`;
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        const options = new RequestOptions({
+          headers: headers,
+          withCredentials: true,
+        });
+        return this.http
+        .post(this.baseUrl + ("/login"), body, options)
+        .map(response => response.json());
+    }
+
+    
 }

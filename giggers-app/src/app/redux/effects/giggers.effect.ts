@@ -14,7 +14,7 @@ import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import { PayloadAction } from '../actions/actions.gigger';
-
+import { AlertService } from '../../services/alert/alert.service';
 import { GiggersService } from '../../giggers.service';
 import * as GiggerActions from '../actions/actions.gigger';
 
@@ -24,6 +24,7 @@ export class GiggerEffects {
       private actions$: Actions,
       private giggersService: GiggersService,
       private router: Router,
+      private alertService: AlertService,
     ){}
 
     @Effect()
@@ -46,14 +47,36 @@ export class GiggerEffects {
         .ofType(GiggerActions.ADD_GIGGER_COMPLETED)
         .do(_ => this.router.navigate(['/giggers']));
 
-    
-  //   @Effect()
-  //   loadGiggers$: Observable<Action>= this.actions$
-  //   .ofType(GiggerActions.LOAD_GIGGERS)
-  //   .switchMap((action: Action): ObservableInput<Action> => {
-  //     return this.giggersService.getgiggers()}
-  //   );
-  // }
-    }
 
-//finish loadgigger and remove gigger
+
+@Effect()
+login$: Observable<Action> = this.actions$
+  .ofType(GiggerActions.REQ_LOGIN)
+  .switchMap((action: PayloadAction): ObservableInput<Action> => {
+    return (
+      this.giggersService
+        .login(action.payload.username, action.payload.password)
+        .mergeMap((data) => {
+          return (
+            this.giggersService
+              .getgiggerbyid(data.id)
+              .mergeMap((data) => {
+                return Observable.from([
+                  GiggerActions.updateGiggerDetails(
+                    data.id,
+                    data.username,
+                    data.name,
+                    data.email,
+                  ),
+                  GiggerActions.loginCompleted(),
+                ]);
+              })
+            .catch(err => {
+              this.alertService.error('ERROR GETTING GIGGER INFO');
+              return of(GiggerActions.loginFailed());
+            })
+          )
+        })
+      );
+    }
+  )}

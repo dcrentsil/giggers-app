@@ -5,11 +5,19 @@ import { PayloadAction } from '../actions/actions.gigger';
 
 
 const initialGigger: IGiggers = {
+    giggerid: undefined,
     type: '',
     name: '',
     username: '',
     speciality: '',
+    email: '',
+    password: '',  
     description : '',
+    loggedIn: false,
+    loginInProgress: false,
+    logoutInProgress: false,
+    lastLoginFailed: false,
+    lastLogoutFailed: false,
     addgiggersInProgress: false,
     addgiggersFailed: false
 };
@@ -17,7 +25,26 @@ const initialGigger: IGiggers = {
 
 export function giggerReducer(state: IGiggers = initialGigger, action: PayloadAction): IGiggers {
     switch(action.type) {
+
+        case GiggerActions.REQ_LOGIN:
+        return Object.assign({}, state, action.payload, { loginInProgress: true });
         
+        case GiggerActions.LOGIN_COMPLETED:
+        return Object.assign({}, state, {
+            loginInProgress: false,
+            lastLoginFailed: false,
+            loggedIn: true,
+            password: undefined,
+          });
+
+        case GiggerActions.LOGIN_FAILED:
+        return Object.assign({}, state, {
+            loginInProgress: false,
+            lastLoginFailed: true,
+            loggedIn: false,
+            password: undefined,
+          });  
+
         case GiggerActions.GIGGER_DETAILS:
         return Object.assign({}, state, action.payload);
 

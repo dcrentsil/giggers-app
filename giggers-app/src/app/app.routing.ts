@@ -4,7 +4,7 @@ import { GiggersService } from './giggers.service';
 import { CreategiggerComponent } from './creategigger/creategigger.component';
 import {RouterModule, Routes } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [

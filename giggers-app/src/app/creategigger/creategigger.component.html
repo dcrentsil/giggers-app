@@ -1,47 +1,44 @@
-<div>
-<h1> New Gigger Form </h1>
- <form #inputForm="ngForm" (ngSubmit)="add(inputForm)">
-
-    <div>
+<div id="container">
+    <div id="wrapper">
+    <div id="signup" class="sform">
+        <!-- <h1> New Gigger Form </h1> -->
+     <form #inputForm="ngForm" (ngSubmit)="add(inputForm)">
+    <p>
     <label>Type</label>
     <select name="type" [(ngModel)]="gigger.type">
       <option value="employer">Employer</option>
       <option value="employee">Employee</option>
     </select>
-    </div>
+</p>
 
-  <div>
+  <p>
     <label>Name</label>
     <input type="text" name="name" [(ngModel)]="gigger.name" #name="ngModel">
-</div>
+  </p>
 
-<div>
+<p>
     <label>Username</label>
     <input type="text" name="username" [(ngModel)]="gigger.username" #name="ngModel">
-</div>
-<div>
+</p>
+<p>
     <label>Email</label>
     <input type="text" name="email" [(ngModel)]="gigger.email" #name="ngModel">
-</div>
-<div>
+</p>
+<p>
     <label>Password</label>
     <input type="text" name="password" [(ngModel)]="gigger.password" #name="ngModel">
-</div>
-
-
-<div>
+</p>
+<p>
     <label>Speciality</label>
     <input type="text" name="speciality" [(ngModel)]="gigger.speciality" #name="ngModel">
-</div>
-
-<div>
+</p>
+<p>
     <label>Description</label>
     <input type="text" name="description" [(ngModel)]="gigger.description" #name="ngModel">
-</div>
+</p>
 
 <!-- <button class="btn btn-primary"> Signup </button> -->
 <button class="btn btn-primary"> Signup </button>
-
 
 <div [hidden]="!submitted">
     <div class="btn-group ">
@@ -49,4 +46,6 @@
     </div>
     </div>
     </form>
+    </div>
+    </div>
 </div>

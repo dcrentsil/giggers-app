@@ -26,7 +26,6 @@ var pool = new pg.Pool({
 
 function creategigger(req, res, next) {
     var newUser = req.body;
-    console.log(newUser);
     pool.connect((err, db, done) => {
         if(err){
             return console.log(err);
@@ -59,8 +58,7 @@ function getallgiggers(req, res, next){
         }
         db.query('SELECT * FROM giggers')
         .then(function (data) {
-            console.log(data.rows);
-            if (data.rows.length === 0 ){
+            if (data.length === 0 ){
                 res.status(404);
                 return Promise.reject("404 No giggers found");
             }
@@ -93,7 +91,7 @@ function getallgigs(req, res, next) {
             res.status(200)
             .json({
                 status: 'Success!!',
-                data: data,
+                data: data.rows,
                 message: 'Retrieved all the available gigs in the database'
             });
         })

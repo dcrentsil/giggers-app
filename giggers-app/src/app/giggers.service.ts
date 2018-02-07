@@ -22,21 +22,21 @@ export class GiggersService {
     constructor(private http: Http,
                 private store: Store<IAppState>) { }
 
+
+    // getgiggers(): Observable<Gigger[]> {
+    //     return this.http.get(this.baseUrl + "/giggers")
+    //     .map((response: Response) => <Gigger[])
+    // }
+                
     getgiggers() {
         return this.http.get(this.baseUrl + "/giggers")
-        .map((res: Response) => {
-            console.log(res.json().data.rows);
-            return res.json().data.rows
-        });
+        .map((response: Response) => response.json().data);
     }
-    
+
     getgigs() {
         return this.http.get(this.baseUrl + "/gigs")
-        .map((res: Response) => {
-            console.log(res.json().data.rows);
-            return res.json().data.rows
-        });
-     }
+        .map((response: Response) => response.json().data);
+    }
 
     creategigger(gigger: Gigger) {
          return this.http.post(this.baseUrl + "/giggers", gigger, {headers: this.headers})
@@ -74,5 +74,9 @@ export class GiggersService {
         .map(response => response.json());
     }
 
-    
+    private handleError (error: any) {
+        let errMsg = (error.message) ? error.message :
+        error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+        console.error(errMsg); // log to console instead
+      }
 }
